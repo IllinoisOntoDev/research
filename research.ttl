@@ -32,6 +32,7 @@
 # http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/hasParticipant
 
 :hasParticipant a owl:ObjectProperty ;
+	rdfs:subPropertyOf :participatesIn ;
 	owl:inverseOf :participatesIn .
 # 
 # http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/participatesIn
@@ -39,6 +40,34 @@
 :participatesIn a owl:ObjectProperty ;
 	rdfs:domain :Agent ;
 	rdfs:range :ResearchEvent .
+# 
+# http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#containedIn
+
+<http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#containedIn> a owl:ObjectProperty ;
+	owl:inverseOf <http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#containsDatum> ;
+	rdfs:domain <http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#Datum> ;
+	rdfs:range <http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#DataGroup> .
+# 
+# http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#containsDatum
+
+<http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#containsDatum> a owl:ObjectProperty .
+# 
+# http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#dataAboutFrom
+
+<http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#dataAboutFrom> a owl:ObjectProperty ;
+	owl:inverseOf <http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#yieldsDataAbout> .
+# 
+# http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#instrumentIn
+
+<http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#instrumentIn> a owl:ObjectProperty ;
+	rdfs:domain owl:Thing ;
+	rdfs:range :ResearchEvent .
+# 
+# http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#yieldsDataAbout
+
+<http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#yieldsDataAbout> a owl:ObjectProperty ;
+	rdfs:domain :ResearchEvent ;
+	rdfs:range owl:Thing .
 # 
 # 
 # 
@@ -57,11 +86,43 @@
 # http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/DataSet
 
 :DataSet a owl:Class ;
+	rdfs:subClassOf <http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#DataGroup> ;
 	owl:disjointWith :ResearchEvent .
 # 
 # http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent
 
 :ResearchEvent a owl:Class .
+# 
+# http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#DataGroup
+
+<http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#DataGroup> a owl:Class .
+# 
+# http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#Datum
+
+<http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#Datum> a owl:Class .
+# 
+# http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#Experiment
+
+<http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#Experiment> a owl:Class ;
+	rdfs:subClassOf :ResearchEvent .
+# 
+# http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#Instrument
+
+<http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#Instrument> a owl:Class ;
+	owl:equivalentClass _:genid1 .
+
+_:genid1 a owl:Restriction ;
+	owl:onProperty <http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#instrumentIn> ;
+	owl:someValuesFrom :ResearchEvent .
+# 
+# http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#Subject
+
+<http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#Subject> a owl:Class ;
+	owl:equivalentClass _:genid2 .
+
+_:genid2 a owl:Restriction ;
+	owl:onProperty <http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/research#dataAboutFrom> ;
+	owl:someValuesFrom :ResearchEvent .
 # 
 # 
 # 
