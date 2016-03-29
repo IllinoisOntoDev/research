@@ -1,4 +1,4 @@
-@prefix : <http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/> .
+@prefix : <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/> .
 @prefix z: <http://www.zotero.org/namespaces/export#> .
 @prefix ad: <http://schemas.talis.com/2005/address/schema#> .
 @prefix tl: <http://purl.org/NET/c4dm/timeline.owl#> .
@@ -29,13 +29,13 @@
 # #################################################################
 # 
 # 
-# http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/hasParticipant
+# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/hasParticipant
 
 :hasParticipant a owl:ObjectProperty ;
 	rdfs:subPropertyOf :participatesIn ;
 	owl:inverseOf :participatesIn .
 # 
-# http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/participatesIn
+# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/participatesIn
 
 :participatesIn a owl:ObjectProperty ;
 	rdfs:domain :Agent ;
@@ -78,18 +78,18 @@
 # #################################################################
 # 
 # 
-# http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/Agent
+# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/Agent
 
 :Agent a owl:Class ;
 	owl:disjointWith :DataSet , :ResearchEvent .
 # 
-# http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/DataSet
+# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/DataSet
 
 :DataSet a owl:Class ;
 	rdfs:subClassOf <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#DataGroup> ;
 	owl:disjointWith :ResearchEvent .
 # 
-# http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent
+# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent
 
 :ResearchEvent a owl:Class .
 # 
@@ -133,7 +133,7 @@ _:genid2 a owl:Restriction ;
 # #################################################################
 # 
 # 
-# http://courses.lis.illinois.edu/lis/2016sp/lis590od/research/DataSet
+# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/DataSet
 
 :DataSet a owl:NamedIndividual ;
 	owl:sameAs dctype:Dataset .
