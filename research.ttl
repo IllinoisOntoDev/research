@@ -191,19 +191,22 @@ _:genid3 a owl:Restriction ;
 
 <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet2> a owl:NamedIndividual , :DataSet ;
 	<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isPortionOf> <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet> ;
-	<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isProductOf> <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myFirstTransform> .
+	<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isProductOf> <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myFirstTransform> ;
+	rdfs:comment "This is the product of myFirstTransform computational event" .
 # 
 # http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet3
 
 <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet3> a owl:NamedIndividual , :DataSet ;
 	<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isPortionOf> <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet> ;
-	<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isProductOf> <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#mySecondTransform> .
+	<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isProductOf> <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#mySecondTransform> ;
+	rdfs:comment "This is the product of mySecondTransform computation event" .
 # 
 # http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet4
 
 <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet4> a owl:NamedIndividual , :DataSet ;
 	<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isPortionOf> <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet> ;
-	<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isProductOf> <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myThirdTransform> .
+	<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isProductOf> <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myThirdTransform> ;
+	rdfs:comment "This is the product of myThirdTransform computation event" .
 # 
 # http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myExperiment
 
