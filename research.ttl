@@ -1,14 +1,10 @@
 @prefix : <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research/> .
-#@prefix z: <http://www.zotero.org/namespaces/export#> .
-#@prefix ad: <http://schemas.talis.com/2005/address/schema#> .
-#@prefix tl: <http://purl.org/NET/c4dm/timeline.owl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix sam: <http://cirss.lis.illinois.edu/DataCon/SAM/> .
 @prefix sro: <http://salt.semanticauthoring.org/ontologies/sro#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-#@prefix bibo: <http://purl.org/ontology/bibo/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix frbr: <http://purl.org/vocab/frbr/core#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -16,7 +12,6 @@
 @prefix event: <http://purl.org/NET/c4dm/event.owl#> .
 @prefix dctype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-#@prefix madsrdf: <http://www.loc.gov/mads/rdf/v1#> .
 @prefix resource: <http://purl.org/vocab/resourcelist/schema#> .
 
 <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research> a owl:Ontology .
@@ -29,17 +24,17 @@
 # #################################################################
 # 
 # 
-# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/hasParticipant
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#composes
 
-:hasParticipant a owl:ObjectProperty ;
-	rdfs:subPropertyOf :participatesIn ;
-	owl:inverseOf :participatesIn .
+<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#composes> a owl:ObjectProperty ;
+	owl:inverseOf <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isPortionOf> .
 # 
-# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/participatesIn
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#computationIn
 
-:participatesIn a owl:ObjectProperty ;
-	rdfs:domain :Agent ;
-	rdfs:range :ResearchEvent .
+<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#computationIn> a owl:ObjectProperty ;
+	rdfs:subPropertyOf <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#instrumentIn> ;
+	rdfs:domain owl:Thing ;
+	rdfs:range <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#ComputationEvent> .
 # 
 # http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#containedIn
 
@@ -63,11 +58,36 @@
 	rdfs:domain owl:Thing ;
 	rdfs:range :ResearchEvent .
 # 
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isPortionOf
+
+<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isPortionOf> a owl:ObjectProperty ;
+	rdfs:domain :DataSet ;
+	rdfs:range :DataSet ;
+	rdfs:comment "Part / Whole relationship." .
+# 
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isProductOf
+
+<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isProductOf> a owl:ObjectProperty ;
+	rdfs:domain :DataSet ;
+	rdfs:range :ResearchEvent .
+# 
 # http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#yieldsDataAbout
 
 <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#yieldsDataAbout> a owl:ObjectProperty ;
 	rdfs:domain :ResearchEvent ;
 	rdfs:range owl:Thing .
+# 
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research/hasParticipant
+
+:hasParticipant a owl:ObjectProperty ;
+	rdfs:subPropertyOf :participatesIn ;
+	owl:inverseOf :participatesIn .
+# 
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research/participatesIn
+
+:participatesIn a owl:ObjectProperty ;
+	rdfs:domain :Agent ;
+	rdfs:range :ResearchEvent .
 # 
 # 
 # 
@@ -78,20 +98,21 @@
 # #################################################################
 # 
 # 
-# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/Agent
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#Computation
 
-:Agent a owl:Class ;
-	owl:disjointWith :DataSet , :ResearchEvent .
+<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#Computation> a owl:Class ;
+	owl:equivalentClass _:genid1 .
+
+_:genid1 a owl:Restriction ;
+	owl:onProperty <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#computationIn> ;
+	owl:someValuesFrom <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#ComputationEvent> .
+
+<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#Computation> rdfs:subClassOf <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#Instrument> .
 # 
-# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/DataSet
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#ComputationEvent
 
-:DataSet a owl:Class ;
-	rdfs:subClassOf <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#DataGroup> ;
-	owl:disjointWith :ResearchEvent .
-# 
-# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/ResearchEvent
-
-:ResearchEvent a owl:Class .
+<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#ComputationEvent> a owl:Class ;
+	rdfs:subClassOf :ResearchEvent .
 # 
 # http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#DataGroup
 
@@ -109,20 +130,36 @@
 # http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#Instrument
 
 <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#Instrument> a owl:Class ;
-	owl:equivalentClass _:genid1 .
+	owl:equivalentClass _:genid2 .
 
-_:genid1 a owl:Restriction ;
+_:genid2 a owl:Restriction ;
 	owl:onProperty <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#instrumentIn> ;
 	owl:someValuesFrom :ResearchEvent .
 # 
 # http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#Subject
 
 <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#Subject> a owl:Class ;
-	owl:equivalentClass _:genid2 .
+	owl:equivalentClass _:genid3 .
 
-_:genid2 a owl:Restriction ;
+_:genid3 a owl:Restriction ;
 	owl:onProperty <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#dataAboutFrom> ;
 	owl:someValuesFrom :ResearchEvent .
+# 
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research/Agent
+
+:Agent a owl:Class ;
+	owl:disjointWith :DataSet , :ResearchEvent .
+# 
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research/DataSet
+
+:DataSet a owl:Class ;
+	rdfs:subClassOf <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#DataGroup> , :DataSet ;
+	owl:disjointWith :ResearchEvent .
+# 
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research/ResearchEvent
+
+:ResearchEvent a owl:Class ;
+	rdfs:subClassOf owl:Thing .
 # 
 # 
 # 
@@ -133,14 +170,70 @@ _:genid2 a owl:Restriction ;
 # #################################################################
 # 
 # 
-# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/DataSet
-
-:DataSet a owl:NamedIndividual ;
-	owl:sameAs dctype:Dataset .
-# 
 # http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#dataSet3
 
 <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#dataSet3> a owl:NamedIndividual , :DataSet .
+# 
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet
+
+<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet> a owl:NamedIndividual , :DataSet ;
+	<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#yieldsDataAbout> <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myResearchEvent> ;
+	rdfs:comment "This is the superset to all data created by myResearchEvent and ancillary computation" .
+# 
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet1
+
+<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet1> a owl:NamedIndividual , :DataSet ;
+	<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isPortionOf> <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet> ;
+	<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isProductOf> <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myExperiment> ;
+	rdfs:comment "This is the product of myResearchEvent.  It should only be a portion of myDataSet" .
+# 
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet2
+
+<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet2> a owl:NamedIndividual , :DataSet ;
+	<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isPortionOf> <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet> ;
+	<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isProductOf> <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myFirstTransform> .
+# 
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet3
+
+<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet3> a owl:NamedIndividual , :DataSet ;
+	<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isPortionOf> <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet> ;
+	<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isProductOf> <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#mySecondTransform> .
+# 
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet4
+
+<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet4> a owl:NamedIndividual , :DataSet ;
+	<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isPortionOf> <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myDataSet> ;
+	<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isProductOf> <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myThirdTransform> .
+# 
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myExperiment
+
+<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myExperiment> a owl:NamedIndividual , <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#Experiment> ;
+	rdfs:comment "This is the instrumental observation which created the base data for myResearchEvent" .
+# 
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myFirstTransform
+
+<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myFirstTransform> a owl:NamedIndividual , <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#ComputationEvent> ;
+	rdfs:comment "First transform of a computational pipeline" .
+# 
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myResearchEvent
+
+<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myResearchEvent> a owl:NamedIndividual , :ResearchEvent ;
+	rdfs:comment "This is a dummy ResearchEvent which produces a dataset (myDataSet)" .
+# 
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#mySecondTransform
+
+<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#mySecondTransform> a owl:NamedIndividual , <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#ComputationEvent> ;
+	rdfs:comment "Second Tranform in a computational pipeline" .
+# 
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myThirdTransform
+
+<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myThirdTransform> a owl:NamedIndividual , <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#ComputationEvent> ;
+	rdfs:comment "Third transform in a computational pipeline" .
+# 
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research/DataSet
+
+:DataSet a owl:NamedIndividual ;
+	owl:sameAs dctype:Dataset .
 # 
 # http://purl.org/dc/dcmitype/Dataset
 
