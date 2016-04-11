@@ -284,6 +284,12 @@
                                owl:someValuesFrom :ResearchEvent
                              ] .
 
+###  http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Instrument
+
+:Instrument rdf:type owl:Class ;
+       
+       owl:disjointWith :Datum ,
+                        :ResearchEvent .
 
 
 
