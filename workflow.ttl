@@ -62,11 +62,8 @@ od:instrumentIn a owl:ObjectProperty .
 # http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isPortionOf
 
 :isPortionOf a owl:ObjectProperty ;
-	rdfs:domain od:DataSet .
-
-od:DataSet a owl:Class .
-
-:isPortionOf rdfs:range od:DataSet ;
+	rdfs:domain od:DataSet ;
+	rdfs:range od:DataSet ;
 	rdfs:comment "Part / Whole relationship." .
 # 
 # http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#isProductOf
@@ -74,14 +71,11 @@ od:DataSet a owl:Class .
 :isProductOf a owl:ObjectProperty ;
 	rdfs:domain od:DataSet ;
 	rdfs:range od:ResearchEvent .
-
-od:ResearchEvent a owl:Class .
 # 
 # http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#wasComputedUsing
 
 :wasComputedUsing a owl:ObjectProperty ;
-	rdfs:subPropertyOf owl:topObjectProperty ;
-	rdfs:range :Computation .
+	rdfs:subPropertyOf owl:topObjectProperty .
 # 
 # 
 # 
@@ -93,24 +87,32 @@ od:ResearchEvent a owl:Class .
 # 
 # 
 # http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/DataSet
+
+od:DataSet a owl:Class .
 # 
 # http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/Instrument
 
 od:Instrument a owl:Class .
 # 
 # http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent
+
+od:ResearchEvent a owl:Class .
 # 
 # http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#Computation
 
 :Computation a owl:Class ;
-	rdfs:subClassOf :Computer .
+	owl:equivalentClass _:genid1 .
+
+_:genid1 a owl:Restriction ;
+	owl:onProperty :isImplementedOn ;
+	owl:someValuesFrom :Computer .
 # 
 # http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#ComputationEvent
 
 :ComputationEvent a owl:Class ;
-	owl:equivalentClass _:genid1 .
+	owl:equivalentClass _:genid2 .
 
-_:genid1 a owl:Restriction ;
+_:genid2 a owl:Restriction ;
 	owl:onProperty :wasComputedUsing ;
 	owl:someValuesFrom :Computation .
 
