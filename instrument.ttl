@@ -61,7 +61,12 @@ onto:isProducedBy rdf:type owl:ObjectProperty .
 
 ###  http://courseweb.lis.illinois.edu/~pharrin2/onto/isSignalDisplayFor
 
-onto:isSignalDisplayFor rdf:type owl:ObjectProperty .
+onto:isSignalDisplayFor rdf:type owl:ObjectProperty ;
+                        
+                        rdfs:domain [ rdf:type owl:Restriction ;
+                                      owl:onProperty onto:isSignalDisplayFor ;
+                                      owl:someValuesFrom onto:signalStream
+                                    ] .
 
 
 
