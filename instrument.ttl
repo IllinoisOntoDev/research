@@ -67,7 +67,12 @@ onto:isSignalDisplayFor rdf:type owl:ObjectProperty .
 
 ###  http://courseweb.lis.illinois.edu/~pharrin2/onto/isSignalRelayFor
 
-onto:isSignalRelayFor rdf:type owl:ObjectProperty .
+onto:isSignalRelayFor rdf:type owl:ObjectProperty ;
+                      
+                      rdfs:domain [ rdf:type owl:Restriction ;
+                                    owl:onProperty onto:isSignalRelayFor ;
+                                    owl:someValuesFrom onto:signalStream
+                                  ] .
 
 
 
