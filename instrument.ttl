@@ -29,7 +29,9 @@ onto:computesSignal rdf:type owl:ObjectProperty ;
 
 onto:indicatesMeasurement rdf:type owl:ObjectProperty ;
                           
-                          owl:inverseOf onto:isMeasuredBy .
+                          owl:inverseOf onto:isMeasuredBy ;
+                          
+                          rdfs:domain onto:Instruments .
 
 
 
@@ -43,7 +45,9 @@ onto:isContainedBy rdf:type owl:ObjectProperty ;
 
 ###  http://courseweb.lis.illinois.edu/~pharrin2/onto/isContainerFor
 
-onto:isContainerFor rdf:type owl:ObjectProperty .
+onto:isContainerFor rdf:type owl:ObjectProperty ;
+                    
+                    rdfs:domain onto:Instruments .
 
 
 
@@ -63,10 +67,7 @@ onto:isProducedBy rdf:type owl:ObjectProperty .
 
 onto:isSignalDisplayFor rdf:type owl:ObjectProperty ;
                         
-                        rdfs:domain [ rdf:type owl:Restriction ;
-                                      owl:onProperty onto:isSignalDisplayFor ;
-                                      owl:someValuesFrom onto:signalStream
-                                    ] .
+                        rdfs:domain onto:Instruments .
 
 
 
@@ -74,10 +75,7 @@ onto:isSignalDisplayFor rdf:type owl:ObjectProperty ;
 
 onto:isSignalRelayFor rdf:type owl:ObjectProperty ;
                       
-                      rdfs:domain [ rdf:type owl:Restriction ;
-                                    owl:onProperty onto:isSignalRelayFor ;
-                                    owl:someValuesFrom onto:signalStream
-                                  ] .
+                      rdfs:domain onto:Instruments .
 
 
 
@@ -89,7 +87,11 @@ onto:manipulatesSignal rdf:type owl:ObjectProperty .
 
 ###  http://courseweb.lis.illinois.edu/~pharrin2/onto/producesSignal
 
-onto:producesSignal rdf:type owl:ObjectProperty .
+onto:producesSignal rdf:type owl:ObjectProperty ;
+                    
+                    rdfs:domain owl:Thing ;
+                    
+                    rdfs:range onto:signalProducer .
 
 
 
@@ -100,12 +102,6 @@ onto:producesSignal rdf:type owl:ObjectProperty .
 #    Classes
 #
 #################################################################
-
-
-###  http://courseweb.lis.illinois.edu/~pharrin2/onto/Datum
-
-onto:Datum rdf:type owl:Class .
-
 
 
 ###  http://courseweb.lis.illinois.edu/~pharrin2/onto/Instruments
