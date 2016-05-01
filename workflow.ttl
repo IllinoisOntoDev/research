@@ -9,13 +9,15 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix frbr: <http://purl.org/vocab/frbr/core#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ryan: <http://cognistorm.com/> .
 @prefix xref: <http://id.crossref.org/contributor/> .
 @prefix event: <http://purl.org/NET/c4dm/event.owl#> .
 @prefix dctype: <http://purl.org/dc/dcmitype/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix resource: <http://purl.org/vocab/resourcelist/schema#> .
 
-<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research> a owl:Ontology .
+<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research> a owl:Ontology ;
+	owl:imports <http://cognistorm.com/> .
 # 
 # 
 # #################################################################
@@ -199,6 +201,10 @@ _:genid2 a owl:Restriction ;
 
 :myResearchEvent a owl:NamedIndividual , od:ResearchEvent ;
 	rdfs:comment "This is a dummy ResearchEvent which produces a dataset (myDataSet)" .
+# 
+# http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#myScientist
+
+:myScientist a owl:NamedIndividual , <http://cognistorm.com/#HumanAgent> .
 # 
 # http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research#mySecondTransform
 
