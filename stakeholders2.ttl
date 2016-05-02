@@ -1,0 +1,118 @@
+@prefix : <http://courseweb.lis.illinois.edu/~broadwy2/stakeholders2/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://courseweb.lis.illinois.edu/~broadwy2/stakeholders2/> rdf:type owl:Ontology .
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+### http://courseweb.lis.illinois.edu/~broadwy2/stakeholders2/creatorOf 
+
+:creatorOf rdf:type owl:ObjectProperty ;  
+  rdfs:domain :Agent ;
+  rdfs:range :Proposal .  
+
+### http://courseweb.lis.illinois.edu/~broadwy2/stakeholders2/deliveredItem
+
+:deliveredItem rdf:type owl:deliveredItem ;
+  rdfs:domain :myDeliverable ;
+  rdfs:range :myReport .  
+
+### http://courseweb.lis.illinois.edu/~broadwy2/stakeholders2/deliveredIn
+
+:deliveredIn rdf:type owl:ObjectProperty ;
+	owl:inverseOf :deliveredItem.
+
+### http://courseweb.lis.illinois.edu/~broadwy2/stakeholders2/deliveredTo
+
+:deliveredTo rdf:type owl:ObjectProperty . 
+
+### http://courseweb.lis.illinois.edu/~broadwy2/stakeholders2/reciepentOf
+
+:recipentOf rdf:type owl:ObjectProperty ;
+	owl:inverseOf :deliveredTo . 
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+### http://courseweb.lis.illinois.edu/~broadwy2/stakeholders2/Funder
+
+:Funder rdf:type owl:Class .
+
+### http://courseweb.lis.illinois.edu/~broadwy2/stakeholders2/Stakeholder 
+
+:Stakeholder rdf:type owl:Class ;
+  rdfs:subClassOf :Funder .
+
+### http://courseweb.lis.illinois.edu/~broadwy2/stakeholders2/Deliverable 
+
+:Deliverable rdf:type owl:Class .
+
+### http://courseweb.lis.illinois.edu/~broadwy2/stakeholders2/dataSet 
+
+:dataSet rdf:type owl:Class ;
+  rdfs:subClassOf :Deliverable .
+
+### http://courseweb.lis.illinois.edu/~broadwy2/stakeholders2/Publication 
+
+:Publication rdf:type owl:Class ;
+  rdfs:subClassOf :Deliverable .
+
+### http://courseweb.lis.illinois.edu/~broadwy2/stakeholders2/Report 
+
+:Report rdf:type owl:Class ;
+  rdfs:subClassOf :Deliverable .
+
+### http://courseweb.lis.illinois.edu/~broadwy2/stakeholders2/Proposal
+
+:Proposal rdf:type owl:Class .
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+### http://courseweb.lis.illinois.edu/~broadwy2/stakeholders2/myProposal
+
+:myProposal rdf:type owl:NamedIndividual .
+
+### http://courseweb.lis.illinois.edu/~broadwy2/stakeholders2/myFunder
+
+:myFunder rdf:type owl:NamedIndividual .
+
+
+### http://courseweb.lis.illinois.edu/~broadwy2/stakeholders2/myReport
+
+:myReport rdf:type owl:NamedIndividual ,
+					[ rdf:type owl:Restriction ;
+                          owl:onProperty :deliveredIn ;
+                          owl:someValuesFrom :Report
+                        ] .
+               
+              
+
+### http://courseweb.lis.illinois.edu/~broadwy2/stakeholders2/myDeliverable
+
+:myDeliverable rdf:type owl:NamedIndividual ,
+						[ rdf:type owl:Restriction ;
+                           owl:onProperty :deliveredItem ;
+                           owl:someValuesFrom :Deliverable
+                         ] .
+
+                
+                
+
+
+
+
