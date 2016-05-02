@@ -56,11 +56,6 @@
 <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#dataAboutFrom> a owl:ObjectProperty ;
 	owl:inverseOf <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#yieldsDataAbout> .
 # 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#excludesLevel
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#excludesLevel> a owl:ObjectProperty ;
-	rdfs:subPropertyOf <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#hasConstraint> .
-# 
 # http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#executesProcedure
 
 <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#executesProcedure> a owl:ObjectProperty ;
@@ -89,10 +84,6 @@
 <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#instrumentIn> a owl:ObjectProperty ;
 	rdfs:domain owl:Thing ;
 	rdfs:range :ResearchEvent .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#measurementLevel
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#measurementLevel> a owl:ObjectProperty .
 # 
 # http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#yieldsDataAbout
 
