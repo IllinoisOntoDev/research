@@ -1,0 +1,290 @@
+@prefix : <http://courseweb.lis.illinois.edu/~pharrin2/onto/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix onto: <http://courseweb.lis.illinois.edu/~pharrin2/onto/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://courseweb.lis.illinois.edu/~pharrin2/onto/> .
+
+<http://courseweb.lis.illinois.edu/~pharrin2/onto/> rdf:type owl:Ontology .
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/computesSignal
+
+onto:computesSignal rdf:type owl:ObjectProperty ;
+                    
+                    rdfs:subPropertyOf onto:manipulatesSignal .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/indicatesMeasurement
+
+onto:indicatesMeasurement rdf:type owl:ObjectProperty ;
+                          
+                          owl:inverseOf onto:isMeasuredBy .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/isContainedBy
+
+onto:isContainedBy rdf:type owl:ObjectProperty ;
+                   
+                   owl:inverseOf onto:isContainerFor .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/isContainerFor
+
+onto:isContainerFor rdf:type owl:ObjectProperty .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/isMeasuredBy
+
+onto:isMeasuredBy rdf:type owl:ObjectProperty .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/isProducedBy
+
+onto:isProducedBy rdf:type owl:ObjectProperty .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/isSignalDisplayFor
+
+onto:isSignalDisplayFor rdf:type owl:ObjectProperty .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/isSignalRelayFor
+
+onto:isSignalRelayFor rdf:type owl:ObjectProperty ;
+                      
+                      rdfs:domain [ rdf:type owl:Restriction ;
+                                    owl:onProperty onto:isSignalRelayFor ;
+                                    owl:someValuesFrom onto:signalStream
+                                  ] .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/manipulatesSignal
+
+onto:manipulatesSignal rdf:type owl:ObjectProperty .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/producesSignal
+
+onto:producesSignal rdf:type owl:ObjectProperty .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/Datum
+
+onto:Datum rdf:type owl:Class .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/Instruments
+
+onto:Instruments rdf:type owl:Class .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/containmentDevice
+
+onto:containmentDevice rdf:type owl:Class ;
+                       
+                       owl:equivalentClass [ rdf:type owl:Restriction ;
+                                             owl:onProperty onto:isContainerFor ;
+                                             owl:someValuesFrom onto:subjectOfResearchEvent
+                                           ] ;
+                       
+                       rdfs:subClassOf onto:Instruments .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/measurementDevice
+
+onto:measurementDevice rdf:type owl:Class ;
+                       
+                       owl:equivalentClass [ rdf:type owl:Restriction ;
+                                             owl:onProperty onto:indicatesMeasurement ;
+                                             owl:someValuesFrom owl:Thing
+                                           ] ;
+                       
+                       rdfs:subClassOf onto:Instruments .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/signalDisplayInstrument
+
+onto:signalDisplayInstrument rdf:type owl:Class ;
+                             
+                             owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                   owl:onProperty onto:isSignalDisplayFor ;
+                                                   owl:someValuesFrom onto:signalStream
+                                                 ] ;
+                             
+                             rdfs:subClassOf onto:Instruments .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/signalManipulator
+
+onto:signalManipulator rdf:type owl:Class ;
+                       
+                       owl:equivalentClass [ rdf:type owl:Restriction ;
+                                             owl:onProperty onto:manipulatesSignal ;
+                                             owl:someValuesFrom onto:signalStream
+                                           ] ;
+                       
+                       rdfs:subClassOf onto:signalRelayInstrument .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/signalProducer
+
+onto:signalProducer rdf:type owl:Class ;
+                    
+                    owl:equivalentClass [ rdf:type owl:Restriction ;
+                                          owl:onProperty onto:producesSignal ;
+                                          owl:someValuesFrom onto:subjectOfResearchEvent
+                                        ] ;
+                    
+                    rdfs:subClassOf onto:subjectOfResearchEvent .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/signalRelayInstrument
+
+onto:signalRelayInstrument rdf:type owl:Class ;
+                           
+                           owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                 owl:onProperty onto:isSignalRelayFor ;
+                                                 owl:someValuesFrom onto:signalStream
+                                               ] ;
+                           
+                           rdfs:subClassOf onto:Instruments .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/signalStream
+
+onto:signalStream rdf:type owl:Class ;
+                  
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty onto:producesSignal ;
+                                        owl:someValuesFrom onto:subjectOfResearchEvent
+                                      ] .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/subjectOfResearchEvent
+
+onto:subjectOfResearchEvent rdf:type owl:Class .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/EKGDevice
+
+onto:EKGDevice rdf:type owl:NamedIndividual ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty onto:isSignalRelayFor ;
+                          owl:someValuesFrom onto:signalStream
+                        ] ;
+               
+               onto:isSignalRelayFor onto:HumanHeart .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/EKGMonitor
+
+onto:EKGMonitor rdf:type owl:NamedIndividual ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty onto:isSignalDisplayFor ;
+                           owl:someValuesFrom onto:signalStream
+                         ] ;
+                
+                onto:isSignalDisplayFor onto:EKGDevice .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/HumanHeart
+
+onto:HumanHeart rdf:type owl:NamedIndividual ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty onto:producesSignal ;
+                           owl:someValuesFrom onto:signalRelayInstrument
+                         ] ;
+                
+                onto:producesSignal onto:EKGDevice .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/beaker
+
+onto:beaker rdf:type owl:NamedIndividual ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty onto:isContainerFor ;
+                       owl:someValuesFrom onto:subjectOfResearchEvent
+                     ] ;
+            
+            onto:isContainerFor onto:sample1 .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/sample1
+
+onto:sample1 rdf:type owl:NamedIndividual ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty onto:isContainedBy ;
+                        owl:someValuesFrom onto:containmentDevice
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty onto:isMeasuredBy ;
+                        owl:someValuesFrom onto:measurementDevice
+                      ] ;
+             
+             onto:isContainedBy onto:beaker ;
+             
+             onto:isMeasuredBy onto:volumetricFlask .
+
+
+
+###  http://courseweb.lis.illinois.edu/~pharrin2/onto/volumetricFlask
+
+onto:volumetricFlask rdf:type owl:NamedIndividual .
+
+
+
+
+###  Generated by the OWL API (version 4.1.3.20151118-2017) https://github.com/owlcs/owlapi
+
