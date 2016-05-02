@@ -19,7 +19,7 @@
 @prefix madsrdf: <http://www.loc.gov/mads/rdf/v1#> .
 @prefix resource: <http://purl.org/vocab/resourcelist/schema#> .
 
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research> a owl:Ontology .
+:research a owl:Ontology .
 # 
 # 
 # #################################################################
@@ -32,7 +32,6 @@
 # http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/hasParticipant
 
 :hasParticipant a owl:ObjectProperty ;
-	rdfs:subPropertyOf :participatesIn ;
 	owl:inverseOf :participatesIn .
 # 
 # http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/participatesIn
@@ -57,11 +56,43 @@
 <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#dataAboutFrom> a owl:ObjectProperty ;
 	owl:inverseOf <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#yieldsDataAbout> .
 # 
+# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#excludesLevel
+
+<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#excludesLevel> a owl:ObjectProperty ;
+	rdfs:subPropertyOf <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#hasConstraint> .
+# 
+# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#executesProcedure
+
+<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#executesProcedure> a owl:ObjectProperty ;
+	rdfs:domain event:Event ;
+	rdfs:range <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Procedure> .
+# 
+# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#hasConstraint
+
+<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#hasConstraint> a owl:ObjectProperty ;
+	rdfs:domain <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Procedure> ;
+	rdfs:range <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Constraint> .
+# 
+# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#hasProcedureInput
+
+<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#hasProcedureInput> a owl:ObjectProperty ;
+	rdfs:subPropertyOf <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#containsDatum> .
+# 
+# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#hasSubProcedure
+
+<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#hasSubProcedure> a owl:ObjectProperty ;
+	rdfs:domain <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Procedure> ;
+	rdfs:range <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Procedure> .
+# 
 # http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#instrumentIn
 
 <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#instrumentIn> a owl:ObjectProperty ;
 	rdfs:domain owl:Thing ;
 	rdfs:range :ResearchEvent .
+# 
+# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#measurementLevel
+
+<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#measurementLevel> a owl:ObjectProperty .
 # 
 # http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#yieldsDataAbout
 
@@ -81,6 +112,7 @@
 # http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/Agent
 
 :Agent a owl:Class ;
+	owl:equivalentClass foaf:Agent ;
 	owl:disjointWith :DataSet , :ResearchEvent .
 # 
 # http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/DataSet
@@ -91,7 +123,16 @@
 # 
 # http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent
 
-:ResearchEvent a owl:Class .
+:ResearchEvent a owl:Class ;
+	rdfs:subClassOf event:Event .
+# 
+# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Alert
+
+<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Alert> a owl:Class .
+# 
+# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Constraint
+
+<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Constraint> a owl:Class .
 # 
 # http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#DataGroup
 
@@ -115,6 +156,10 @@ _:genid1 a owl:Restriction ;
 	owl:onProperty <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#instrumentIn> ;
 	owl:someValuesFrom :ResearchEvent .
 # 
+# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Procedure
+
+<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Procedure> a owl:Class .
+# 
 # http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Subject
 
 <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Subject> a owl:Class ;
@@ -124,6 +169,14 @@ _:genid2 a owl:Restriction ;
 	owl:onProperty <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#dataAboutFrom> ;
 	owl:someValuesFrom :ResearchEvent .
 # 
+# http://purl.org/NET/c4dm/event.owl#Event
+
+event:Event a owl:Class .
+# 
+# http://xmlns.com/foaf/0.1/Agent
+
+foaf:Agent a owl:Class .
+# 
 # 
 # 
 # #################################################################
@@ -132,15 +185,6 @@ _:genid2 a owl:Restriction ;
 # #
 # #################################################################
 # 
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/DataSet
-
-:DataSet a owl:NamedIndividual ;
-	owl:sameAs dctype:Dataset .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#dataSet3
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#dataSet3> a owl:NamedIndividual , :DataSet .
 # 
 # http://purl.org/dc/dcmitype/Dataset
 
