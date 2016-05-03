@@ -44,7 +44,7 @@
                                                                                 
                                                                                 rdfs:domain <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/Agent> ;
                                                                                 
-                                                                                rdfs:range <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> .
+                                                                                rdfs:range :ResearchEvent .
 
 
 
@@ -96,7 +96,7 @@
 
 :getsDataFrom rdf:type owl:ObjectProperty ;
               
-              rdfs:domain <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> ;
+              rdfs:domain :ResearchEvent ;
               
               rdfs:range <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/DataSet> .
 
@@ -136,7 +136,7 @@
               
               rdfs:domain owl:Thing ;
               
-              rdfs:range <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> .
+              rdfs:range :ResearchEvent .
 
 
 
@@ -150,7 +150,7 @@
 
 :producesDataSet rdf:type owl:ObjectProperty ;
                  
-                 rdfs:domain <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> ;
+                 rdfs:domain :ResearchEvent ;
                  
                  rdfs:range <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/DataSet> .
 
@@ -160,7 +160,7 @@
 
 :yieldsDataAbout rdf:type owl:ObjectProperty ;
                  
-                 rdfs:domain <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> ;
+                 rdfs:domain :ResearchEvent ;
                  
                  rdfs:range owl:Thing .
 
@@ -182,7 +182,7 @@
                                                                        owl:equivalentClass foaf:Agent ;
                                                                        
                                                                        owl:disjointWith <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/DataSet> ,
-                                                                                        <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> .
+                                                                                        :ResearchEvent .
 
 
 
@@ -192,13 +192,13 @@
                                                                          
                                                                          rdfs:subClassOf :DataGroup ;
                                                                          
-                                                                         owl:disjointWith <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> .
+                                                                         owl:disjointWith :ResearchEvent .
 
 
 
 ###  http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent
 
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> rdf:type owl:Class ;
+:ResearchEvent rdf:type owl:Class ;
                                                                                
                                                                                rdfs:subClassOf event:Event .
 
@@ -235,7 +235,7 @@
                                         owl:someValuesFrom <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/DataSet>
                                       ] ;
                   
-                  rdfs:subClassOf <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> .
+                  rdfs:subClassOf :ResearchEvent .
 
 
 
@@ -249,7 +249,7 @@
 
 :Experiment rdf:type owl:Class ;
             
-            rdfs:subClassOf <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> .
+            rdfs:subClassOf :ResearchEvent .
 
 
 
@@ -259,7 +259,7 @@
             
             owl:equivalentClass [ rdf:type owl:Restriction ;
                                   owl:onProperty :instrumentIn ;
-                                  owl:someValuesFrom <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent>
+                                  owl:someValuesFrom :ResearchEvent
                                 ] .
 
 
@@ -276,7 +276,7 @@
          
          owl:equivalentClass [ rdf:type owl:Restriction ;
                                owl:onProperty :dataAboutFrom ;
-                               owl:someValuesFrom <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent>
+                               owl:someValuesFrom :ResearchEvent
                              ] .
 
 
