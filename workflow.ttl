@@ -16,8 +16,7 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix resource: <http://purl.org/vocab/resourcelist/schema#> .
 
-<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research> a owl:Ontology ;
-	owl:imports <http://cognistorm.com/> .
+<http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research> a owl:Ontology .
 # 
 # 
 # #################################################################
@@ -87,6 +86,10 @@ od:instrumentIn a owl:ObjectProperty .
 # #
 # #################################################################
 # 
+# 
+# http://cognistorm.com/#HumanAgent
+
+<http://cognistorm.com/#HumanAgent> a owl:Class .
 # 
 # http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/DataSet
 
