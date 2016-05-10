@@ -1,409 +1,524 @@
-<<<<<<< HEAD
-@prefix : <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#> .
-@prefix z: <http://www.zotero.org/namespaces/export#> .
-@prefix ad: <http://schemas.talis.com/2005/address/schema#> .
-@prefix tl: <http://purl.org/NET/c4dm/timeline.owl#> .
+@prefix : <http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix sam: <http://cirss.lis.illinois.edu/DataCon/SAM/> .
-@prefix sro: <http://salt.semanticauthoring.org/ontologies/sro#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix bibo: <http://purl.org/ontology/bibo/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix frbr: <http://purl.org/vocab/frbr/core#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xref: <http://id.crossref.org/contributor/> .
-@prefix event: <http://purl.org/NET/c4dm/event.owl#> .
-@prefix dctype: <http://purl.org/dc/dcmitype/> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix madsrdf: <http://www.loc.gov/mads/rdf/v1#> .
-@prefix resource: <http://purl.org/vocab/resourcelist/schema#> .
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research> a owl:Ontology .
-# 
-# 
-# #################################################################
-# #
-# #    Object Properties
-# #
-# #################################################################
-# 
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/hasParticipant
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/hasParticipant> a owl:ObjectProperty ;
-	owl:inverseOf <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/participatesIn> .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/participatesIn
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/participatesIn> a owl:ObjectProperty ;
-	rdfs:domain <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/Agent> ;
-	rdfs:range <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#containedIn
-
-:containedIn a owl:ObjectProperty ;
-	owl:inverseOf :containsDatum ;
-	rdfs:domain :Datum ;
-	rdfs:range :DataGroup .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#containsDatum
-
-:containsDatum a owl:ObjectProperty .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#dataAboutFrom
-
-:dataAboutFrom a owl:ObjectProperty ;
-	owl:inverseOf :yieldsDataAbout .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#excludesLevel
-
-:excludesLevel a owl:ObjectProperty ;
-	rdfs:subPropertyOf :hasConstraint .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#executesProcedure
-
-:executesProcedure a owl:ObjectProperty ;
-	rdfs:domain event:Event ;
-	rdfs:range :Procedure .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#getsDataFrom
-
-:getsDataFrom a owl:ObjectProperty ;
-	rdfs:domain <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> ;
-	rdfs:range <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/DataSet> .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#hasConstraint
-
-:hasConstraint a owl:ObjectProperty ;
-	rdfs:domain :Procedure ;
-	rdfs:range :Constraint .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#hasProcedureInput
-
-:hasProcedureInput a owl:ObjectProperty ;
-	rdfs:subPropertyOf :containsDatum .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#hasSubProcedure
-
-:hasSubProcedure a owl:ObjectProperty ;
-	rdfs:domain :Procedure ;
-	rdfs:range :Procedure .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#instrumentIn
-
-:instrumentIn a owl:ObjectProperty ;
-	rdfs:domain owl:Thing ;
-	rdfs:range <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#measurementLevel
-
-:measurementLevel a owl:ObjectProperty .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#producesDataSet
-
-:producesDataSet a owl:ObjectProperty ;
-	rdfs:domain <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> ;
-	rdfs:range <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/DataSet> .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#yieldsDataAbout
-
-:yieldsDataAbout a owl:ObjectProperty ;
-	rdfs:domain <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> ;
-	rdfs:range owl:Thing .
-# 
-# 
-# 
-# #################################################################
-# #
-# #    Classes
-# #
-# #################################################################
-# 
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/Agent
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/Agent> a owl:Class ;
-	owl:equivalentClass foaf:Agent ;
-	owl:disjointWith <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/DataSet> , <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/DataSet
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/DataSet> a owl:Class ;
-	rdfs:subClassOf :DataGroup ;
-	owl:disjointWith <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> a owl:Class ;
-	rdfs:subClassOf event:Event .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Alert
-
-:Alert a owl:Class .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Constraint
-
-:Constraint a owl:Class .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#DataGroup
-
-:DataGroup a owl:Class .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#DataManipulation
-
-:DataManipulation a owl:Class ;
-	owl:equivalentClass _:genid1 .
-
-_:genid1 a owl:Restriction ;
-	owl:onProperty :getsDataFrom ;
-	owl:someValuesFrom <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/DataSet> .
-
-:DataManipulation owl:equivalentClass _:genid2 .
-
-_:genid2 a owl:Restriction ;
-	owl:onProperty :producesDataSet ;
-	owl:someValuesFrom <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/DataSet> .
-
-:DataManipulation rdfs:subClassOf <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Datum
-
-:Datum a owl:Class .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Experiment
-
-:Experiment a owl:Class ;
-	rdfs:subClassOf <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Instrument
-
-:Instrument a owl:Class ;
-	owl:equivalentClass _:genid3 .
-
-_:genid3 a owl:Restriction ;
-	owl:onProperty :instrumentIn ;
-	owl:someValuesFrom <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Procedure
-
-:Procedure a owl:Class .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Subject
-
-:Subject a owl:Class ;
-	owl:equivalentClass _:genid4 .
-
-_:genid4 a owl:Restriction ;
-	owl:onProperty :dataAboutFrom ;
-	owl:someValuesFrom <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent> .
-# 
-# http://purl.org/NET/c4dm/event.owl#Event
-
-event:Event a owl:Class .
-# 
-# http://xmlns.com/foaf/0.1/Agent
-
-foaf:Agent a owl:Class .
-# 
-# 
-# 
-# #################################################################
-# #
-# #    Individuals
-# #
-# #################################################################
-# 
-# 
-# http://purl.org/dc/dcmitype/Dataset
-
-dctype:Dataset a owl:NamedIndividual .
-# 
-# Generated by the OWL API (version 4.1.3.20151118-2017) https://github.com/owlcs/owlapi
-=======
-@prefix : <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/> .
-@prefix z: <http://www.zotero.org/namespaces/export#> .
-@prefix ad: <http://schemas.talis.com/2005/address/schema#> .
-@prefix tl: <http://purl.org/NET/c4dm/timeline.owl#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix sam: <http://cirss.lis.illinois.edu/DataCon/SAM/> .
-@prefix sro: <http://salt.semanticauthoring.org/ontologies/sro#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix bibo: <http://purl.org/ontology/bibo/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix frbr: <http://purl.org/vocab/frbr/core#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xref: <http://id.crossref.org/contributor/> .
-@prefix event: <http://purl.org/NET/c4dm/event.owl#> .
-@prefix dctype: <http://purl.org/dc/dcmitype/> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix madsrdf: <http://www.loc.gov/mads/rdf/v1#> .
-@prefix resource: <http://purl.org/vocab/resourcelist/schema#> .
-
-:research a owl:Ontology .
-# 
-# 
-# #################################################################
-# #
-# #    Object Properties
-# #
-# #################################################################
-# 
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/hasParticipant
-
-:hasParticipant a owl:ObjectProperty ;
-	owl:inverseOf :participatesIn .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/participatesIn
-
-:participatesIn a owl:ObjectProperty ;
-	rdfs:domain :Agent ;
-	rdfs:range :ResearchEvent .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#containedIn
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#containedIn> a owl:ObjectProperty ;
-	owl:inverseOf <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#containsDatum> ;
-	rdfs:domain <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Datum> ;
-	rdfs:range <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#DataGroup> .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#containsDatum
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#containsDatum> a owl:ObjectProperty .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#dataAboutFrom
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#dataAboutFrom> a owl:ObjectProperty ;
-	owl:inverseOf <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#yieldsDataAbout> .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#executesProcedure
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#executesProcedure> a owl:ObjectProperty ;
-	rdfs:domain event:Event ;
-	rdfs:range <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Procedure> .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#hasConstraint
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#hasConstraint> a owl:ObjectProperty ;
-	rdfs:domain <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Procedure> ;
-	rdfs:range <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Constraint> .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#hasProcedureInput
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#hasProcedureInput> a owl:ObjectProperty ;
-	rdfs:subPropertyOf <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#containsDatum> .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#hasSubProcedure
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#hasSubProcedure> a owl:ObjectProperty ;
-	rdfs:domain <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Procedure> ;
-	rdfs:range <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Procedure> .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#instrumentIn
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#instrumentIn> a owl:ObjectProperty ;
-	rdfs:domain owl:Thing ;
-	rdfs:range :ResearchEvent .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#yieldsDataAbout
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#yieldsDataAbout> a owl:ObjectProperty ;
-	rdfs:domain :ResearchEvent ;
-	rdfs:range owl:Thing .
-# 
-# 
-# 
-# #################################################################
-# #
-# #    Classes
-# #
-# #################################################################
-# 
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/Agent
-
-:Agent a owl:Class ;
-	owl:equivalentClass foaf:Agent ;
-	owl:disjointWith :DataSet , :ResearchEvent .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/DataSet
-
-:DataSet a owl:Class ;
-	rdfs:subClassOf <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#DataGroup> ;
-	owl:disjointWith :ResearchEvent .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/ResearchEvent
-
-:ResearchEvent a owl:Class ;
-	rdfs:subClassOf event:Event .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Alert
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Alert> a owl:Class .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Constraint
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Constraint> a owl:Class .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#DataGroup
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#DataGroup> a owl:Class .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Datum
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Datum> a owl:Class .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Experiment
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Experiment> a owl:Class ;
-	rdfs:subClassOf :ResearchEvent .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Instrument
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Instrument> a owl:Class ;
-	owl:equivalentClass _:genid1 .
-
-_:genid1 a owl:Restriction ;
-	owl:onProperty <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#instrumentIn> ;
-	owl:someValuesFrom :ResearchEvent .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Procedure
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Procedure> a owl:Class .
-# 
-# http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Subject
-
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Subject> a owl:Class ;
-	owl:equivalentClass _:genid2 .
-
-_:genid2 a owl:Restriction ;
-	owl:onProperty <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#dataAboutFrom> ;
-	owl:someValuesFrom :ResearchEvent .
-# 
-# http://purl.org/NET/c4dm/event.owl#Event
-
-event:Event a owl:Class .
-# 
-# http://xmlns.com/foaf/0.1/Agent
-
-foaf:Agent a owl:Class .
-# 
-# 
-# 
-# #################################################################
-# #
-# #    Individuals
-# #
-# #################################################################
-# 
-# 
-# http://purl.org/dc/dcmitype/Dataset
-
-dctype:Dataset a owl:NamedIndividual .
-# 
-# Generated by the OWL API (version 4.1.3.20151118-2017) https://github.com/owlcs/owlapi
->>>>>>> origin/master
+@base <http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research> .
+
+<http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research> rdf:type owl:Ontology ;
+                                                                   
+                                                                   owl:imports <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research> ;
+                                                                   
+                                                                   rdfs:comment "This is Jessica's portion of the LIS 590OD class Ontology. This domain concerns itself with citation, and related authority control." .
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#agentCites
+
+:agentCites rdf:type owl:ObjectProperty ;
+            
+            owl:inverseOf :citesAgent ;
+            
+            rdfs:domain :Agent ;
+            
+            rdfs:range [ rdf:type owl:Class ;
+                         owl:unionOf ( :Agent
+                                       :Work
+                                     )
+                       ] .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#authorOf
+
+:authorOf rdf:type owl:ObjectProperty ;
+          
+          owl:inverseOf :hasAuthor ;
+          
+          rdfs:domain :Agent ;
+          
+          rdfs:range :Work .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#citesAgent
+
+:citesAgent rdf:type owl:ObjectProperty ;
+            
+            rdfs:domain [ rdf:type owl:Class ;
+                          owl:unionOf ( :Agent
+                                        :Work
+                                      )
+                        ] ;
+            
+            rdfs:range :Agent .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#citesWork
+
+:citesWork rdf:type owl:ObjectProperty ;
+           
+           owl:inverseOf :workCites ;
+           
+           rdfs:domain [ rdf:type owl:Class ;
+                         owl:unionOf ( :Agent
+                                       :Work
+                                     )
+                       ] ;
+           
+           rdfs:range :Work .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#dateOf
+
+:dateOf rdf:type owl:ObjectProperty ;
+        
+        owl:inverseOf :hasDate ;
+        
+        rdfs:domain :Date ;
+        
+        rdfs:range :Work .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#hasAgentIdentification
+
+:hasAgentIdentification rdf:type owl:ObjectProperty ;
+                        
+                        owl:inverseOf :identifiesAgent ;
+                        
+                        rdfs:domain :Agent ;
+                        
+                        rdfs:range :AgentIdentification .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#hasAuthor
+
+:hasAuthor rdf:type owl:ObjectProperty ;
+           
+           rdfs:domain :Work ;
+           
+           rdfs:range :Agent .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#hasDate
+
+:hasDate rdf:type owl:ObjectProperty ;
+         
+         rdfs:domain :Work ;
+         
+         rdfs:range :Date .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#hasMember
+
+:hasMember rdf:type owl:ObjectProperty ;
+           
+           rdfs:domain [ rdf:type owl:Class ;
+                         owl:unionOf ( :Group
+                                       :Organization
+                                     )
+                       ] ;
+           
+           rdfs:range :Agent .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#hasWorkIdentification
+
+:hasWorkIdentification rdf:type owl:ObjectProperty ;
+                       
+                       owl:inverseOf :identifiesWork ;
+                       
+                       rdfs:domain :Work ;
+                       
+                       rdfs:range :WorkIdentification .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#identifiesAgent
+
+:identifiesAgent rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:domain :AgentIdentification .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#identifiesWork
+
+:identifiesWork rdf:type owl:ObjectProperty ;
+                
+                rdfs:domain :WorkIdentification ;
+                
+                rdfs:range :Work .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#memberOf
+
+:memberOf rdf:type owl:ObjectProperty ;
+          
+          rdfs:domain :Person ;
+          
+          rdfs:range [ rdf:type owl:Class ;
+                       owl:unionOf ( :Group
+                                     :Organization
+                                   )
+                     ] .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#workCites
+
+:workCites rdf:type owl:ObjectProperty ;
+           
+           rdfs:domain :Work ;
+           
+           rdfs:range [ rdf:type owl:Class ;
+                        owl:unionOf ( :Agent
+                                      :Work
+                                    )
+                      ] .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Agent
+
+<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Agent> owl:equivalentClass :Agent .
+
+
+
+###  http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#DataGroup
+
+<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#DataGroup> rdf:type owl:Class ;
+                                                                                    
+                                                                                    rdfs:subClassOf :Work .
+
+
+
+###  http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Datum
+
+<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Datum> rdf:type owl:Class ;
+                                                                                
+                                                                                rdfs:subClassOf :Work .
+
+
+
+###  http://courseweb.lis.illinois.edu/~broadwy2/stakeholders2/Funder
+
+<http://courseweb.lis.illinois.edu/~broadwy2/stakeholders2/Funder> rdf:type owl:Class ;
+                                                                   
+                                                                   rdfs:subClassOf :Agent .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#Agent
+
+:Agent rdf:type owl:Class ;
+       
+       owl:equivalentClass [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasAgentIdentification ;
+                             owl:someValuesFrom :AgentIdentification
+                           ] ;
+       
+       rdfs:subClassOf owl:Thing ;
+       
+       owl:disjointWith :Date ,
+                        :Edition ,
+                        :Identification ,
+                        :Work ;
+       
+       rdfs:comment "An Agent is a person or group of persons who creates a Work and has Identification." .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#AgentIdentification
+
+:AgentIdentification rdf:type owl:Class ;
+                     
+                     owl:equivalentClass [ rdf:type owl:Restriction ;
+                                           owl:onProperty :identifiesAgent ;
+                                           owl:someValuesFrom :Agent
+                                         ] ;
+                     
+                     rdfs:subClassOf :Identification ;
+                     
+                     owl:disjointWith :WorkIdentification .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#Author
+
+:Author rdf:type owl:Class ;
+        
+        owl:equivalentClass [ rdf:type owl:Restriction ;
+                              owl:onProperty :authorOf ;
+                              owl:someValuesFrom :Work
+                            ] ;
+        
+        rdfs:subClassOf :Agent ;
+        
+        rdfs:comment "An Agent who creates a Work" .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#Book
+
+:Book rdf:type owl:Class ;
+      
+      rdfs:subClassOf :Work .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#BookChapter
+
+:BookChapter rdf:type owl:Class ;
+             
+             rdfs:subClassOf :Work .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#DOI
+
+:DOI rdf:type owl:Class ;
+     
+     rdfs:subClassOf :WorkIdentification .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#DataSet
+
+:DataSet rdf:type owl:Class ;
+         
+         rdfs:subClassOf :Work .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#Date
+
+:Date rdf:type owl:Class ;
+      
+      owl:equivalentClass [ rdf:type owl:Restriction ;
+                            owl:onProperty :dateOf ;
+                            owl:someValuesFrom :Work
+                          ] .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#Edition
+
+:Edition rdf:type owl:Class ;
+         
+         rdfs:comment "Any type of edition statement, including text strings or numerals." .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#Group
+
+:Group rdf:type owl:Class ;
+       
+       rdfs:subClassOf :Agent ;
+       
+       rdfs:comment "A group of persons who are not an organization." .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#ISBN
+
+:ISBN rdf:type owl:Class ;
+      
+      rdfs:subClassOf :WorkIdentification .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#ISSN
+
+:ISSN rdf:type owl:Class ;
+      
+      rdfs:subClassOf :WorkIdentification .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#Identification
+
+:Identification rdf:type owl:Class ;
+                
+                rdfs:subClassOf owl:Thing ;
+                
+                rdfs:comment "Any string which acts as authority control. This will ideally be some type of persistent identifier, such as an URI." .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#Journal
+
+:Journal rdf:type owl:Class ;
+         
+         rdfs:subClassOf :Work .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#JournalArticle
+
+:JournalArticle rdf:type owl:Class ;
+                
+                rdfs:subClassOf :Work .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#LoCID
+
+:LoCID rdf:type owl:Class ;
+       
+       rdfs:subClassOf :AgentIdentification ;
+       
+       rdfs:comment "Identification from Library of Congress Linked Data Service." .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#OCLCNumber
+
+:OCLCNumber rdf:type owl:Class ;
+            
+            rdfs:subClassOf :WorkIdentification .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#ORCID
+
+:ORCID rdf:type owl:Class ;
+       
+       rdfs:subClassOf :AgentIdentification ;
+       
+       rdfs:comment "Identification from Open Researcher and Contributor ID." .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#Organization
+
+:Organization rdf:type owl:Class ;
+              
+              rdfs:subClassOf :Agent ;
+              
+              rdfs:comment "Either a group of persons, such as an institution or an association, that has a collective goal and is linked to an external environment." .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#OtherID
+
+:OtherID rdf:type owl:Class ;
+         
+         rdfs:subClassOf :AgentIdentification .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#Person
+
+:Person rdf:type owl:Class ;
+        
+        rdfs:subClassOf :Agent .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#Publisher
+
+:Publisher rdf:type owl:Class ;
+           
+           rdfs:subClassOf :Agent .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#Researcher
+
+:Researcher rdf:type owl:Class ;
+            
+            rdfs:subClassOf :Person ;
+            
+            rdfs:comment "A Person who does not write a Work, but might help in the research contained in the Work." .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#Study
+
+:Study rdf:type owl:Class ;
+       
+       rdfs:subClassOf :Work .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#URL
+
+:URL rdf:type owl:Class ;
+     
+     rdfs:subClassOf :WorkIdentification .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#Work
+
+:Work rdf:type owl:Class ;
+      
+      owl:equivalentClass [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasAuthor ;
+                            owl:someValuesFrom :Agent
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasDate ;
+                            owl:someValuesFrom :Date
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasWorkIdentification ;
+                            owl:someValuesFrom :WorkIdentification
+                          ] ;
+      
+      rdfs:subClassOf owl:Thing ;
+      
+      rdfs:comment "I use Work in the FRBR WEMI sense, in that it is any distinct artistic or intellectual creation." .
+
+
+
+###  http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#WorkIdentification
+
+:WorkIdentification rdf:type owl:Class ;
+                    
+                    owl:equivalentClass [ rdf:type owl:Restriction ;
+                                          owl:onProperty :identifiesWork ;
+                                          owl:someValuesFrom :Work
+                                        ] ;
+                    
+                    rdfs:subClassOf :Identification .
+
+
+
+###  http://xmlns.com/foaf/0.1/Document
+
+<http://xmlns.com/foaf/0.1/Document> rdf:type owl:Class ;
+                                     
+                                     rdfs:subClassOf :Work .
+
+
+
+
+###  Generated by the OWL API (version 4.1.3.20151118-2017) https://github.com/owlcs/owlapi
+
