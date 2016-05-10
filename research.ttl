@@ -9,8 +9,6 @@
 
 <http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research> rdf:type owl:Ontology ;
                                                                    
-                                                                   owl:imports <http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research> ;
-                                                                   
                                                                    rdfs:comment "This is Jessica's portion of the LIS 590OD class Ontology. This domain concerns itself with citation, and related authority control." .
 
 
@@ -206,7 +204,9 @@
 
 ###  http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Agent
 
-<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Agent> owl:equivalentClass :Agent .
+<http://courseweb.lis.illinois.edu/lis/2016sp/lis590od/research/research#Agent> rdf:type owl:Class ;
+                                                                                
+                                                                                owl:equivalentClass :Agent .
 
 
 
