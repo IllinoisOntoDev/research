@@ -21,7 +21,7 @@
 @prefix resource: <http://purl.org/vocab/resourcelist/schema#> .
 
 <http://courseweb.lis.illinois.edu/~gryk2/OntoDev/research> a owl:Ontology ;
-	owl:imports <http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research> , <http://cognistorm.com/> .
+	owl:imports <http://cognistorm.com/> .
 # 
 # 
 # #################################################################
@@ -90,6 +90,10 @@ od:instrumentIn a owl:ObjectProperty .
 # http://courseweb.lis.illinois.edu/~misen2/research/research#producesDataSet
 
 <http://courseweb.lis.illinois.edu/~misen2/research/research#producesDataSet> a owl:ObjectProperty .
+# 
+# http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#authorOf
+
+<http://www.courseweb.lis.illinois.edu/~jcolber2/OntoDev/research#authorOf> a owl:ObjectProperty .
 # 
 # 
 # 
